@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>9f5b4aad-2a66-44ce-8c28-3377a9371c1b</ProjectGuid>
@@ -17,94 +17,5 @@
     <iOSBackgroundMode />
     <AndroidVersionCode>1</AndroidVersionCode>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="App_Resources" />
-    <Folder Include="App_Resources\iOS">
-      <Platform>iOS</Platform>
-    </Folder>
-    <Folder Include="App_Resources\Android">
-      <Platform>Android</Platform>
-    </Folder>
-    <Folder Include="App_Resources\Android\drawable-hdpi">
-      <Platform>Android</Platform>
-    </Folder>
-    <Folder Include="App_Resources\Android\drawable-mdpi">
-      <Platform>Android</Platform>
-    </Folder>
-    <Folder Include="App_Resources\Android\drawable-ldpi">
-      <Platform>Android</Platform>
-    </Folder>
-    <Folder Include="App_Resources\Android\drawable-nodpi">
-      <Platform>Android</Platform>
-    </Folder>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="App_Resources\iOS\icon.png" />
-    <Resource Include="App_Resources\iOS\icon@2x.png" />
-    <Resource Include="App_Resources\iOS\icon-72.png" />
-    <Resource Include="App_Resources\iOS\icon-72@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small@2x.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small-50.png" />
-    <Resource Include="App_Resources\iOS\Icon-Small-50@2x.png" />
-    <Resource Include="App_Resources\iOS\Default.png" />
-    <Resource Include="App_Resources\iOS\Default@2x.png" />
-    <Resource Include="App_Resources\iOS\Default-568h@2x.png" />
-    <Resource Include="App_Resources\iOS\Default-Portrait.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape.png" />
-    <Resource Include="App_Resources\iOS\Default-Portrait@2x.png" />
-    <Resource Include="App_Resources\iOS\Default-Landscape@2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
-    <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="index.html" />
-    <Content Include="css\index.css" />
-    <Content Include="js\index.js" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\cordova.png" />
-    <Content Include="cordova.ios.js">
-      <Platform>iOS</Platform>
-      <TargetName>cordova.js</TargetName>
-    </Content>
-    <Content Include="cordova.android.js">
-      <Platform>Android</Platform>
-      <TargetName>cordova.js</TargetName>
-    </Content>
-    <Content Include="kendo\js\jquery.min.js" />
-    <Content Include="kendo\js\kendo.mobile.min.js" />
-    <Content Include="kendo\styles\images\back.png" />
-    <Content Include="kendo\styles\images\KendoUI.ttf" />
-    <Content Include="kendo\styles\images\KendoUI.woff" />
-    <Content Include="kendo\styles\kendo.mobile.all.min.css" />
-    <Content Include="scripts\app\main.js" />
-    <Content Include="scripts\lib\everlive.min.js" />
-    <Content Include="scripts\lib\kendo.data.everlive.js" />
-    <Content Include="scripts\lib\reqwest.js" />
-    <Content Include="scripts\lib\rsvp.js" />
-    <Content Include="scripts\lib\underscore.js" />
-    <Content Include="styles\images\app-bg.jpg" />
-    <Content Include="styles\images\avatar.png" />
-    <Content Include="styles\images\border.png" />
-    <Content Include="styles\images\sprite.png" />
-    <Content Include="styles\main.css" />
-    <Content Include="views\activitiesView.html" />
-    <Content Include="views\activityView.html" />
-    <Content Include="views\addActivityView.html" />
-    <Content Include="views\signupView.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <CordovaPlugin Include="com.phonegap.plugins.pushPlugin">
-      <Version>1.2.2</Version>
-      <Name>PushPlugin</Name>
-    </CordovaPlugin>
-  </ItemGroup>
-  <ItemGroup>
-    <CordovaPluginContent Include="com.phonegap.plugins.pushPlugin\PushNotification.js" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>
