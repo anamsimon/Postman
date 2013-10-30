@@ -2,6 +2,9 @@
 //This is your Everlive API key.
 var everliveApiKey = 'EVERLIVE_API_KEY';
 
+//This is the scheme (http or https) to use for accessing Everlive Cloud Services.
+var everliveScheme = 'http';
+
 //This is your Android project number. It is required by Google in order to enable push notifications for your app. You do not need it for iPhone.
 var androidProjectNumber = 'GOOGLE_PROJECT_NUMBER';
 
@@ -31,7 +34,8 @@ var app = (function () {
 
     //Initialize the Everlive SDK
     var el = new Everlive({
-        apiKey: everliveApiKey
+        apiKey: everliveApiKey,
+        scheme: everliveScheme
     });
 
     var mobileApp = new kendo.mobile.Application(document.body, { transition: 'slide', layout: 'mobile-tabstrip' });
