@@ -1,4 +1,3 @@
-
 //This is your Everlive API key.
 var everliveApiKey = 'EVERLIVE_API_KEY';
 
@@ -109,15 +108,16 @@ var app = (function () {
                         $("#messageParagraph").html("ERROR!<br /><br />An error occured while initializing the device for push notifications.<br/><br/>" + err.message);
                     }
                 ).then(
-                    function(registration) {
-                        if (registration.result) {
-                            _onDeviceIsRegistered();
-                        } else {
-                            _onDeviceIsNotRegistered();
-                        }
+                    function(registration) {                        
+                        _onDeviceIsRegistered();                      
                     },
-                    function(err) {
-                        $("#messageParagraph").html("ERROR!<br /><br />An error occured while checking device registration status: <br/><br/>" + err.message);
+                    function(err) {                        
+                        if(err.code === 801) {
+                            _onDeviceIsNotRegistered();      
+                        }
+                        else {                        
+                            $("#messageParagraph").html("ERROR!<br /><br />An error occured while checking device registration status: <br/><br/>" + err.message);
+                        }
                     }
                 );
         };
