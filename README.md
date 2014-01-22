@@ -1,8 +1,8 @@
-This application is a basic example of using Push Notifications provided by Everlive.
+This application is a basic example of using Push Notifications provided by Telerik BackEnd Services.
 
 ### Requirements
-- Registration in Everlive (http://www.telerik.com/backend-services) and Icenium (http://www.telerik.com/appbuilder)
-- The certificates required for APNS (Apple Push Notifications Service)
+- Registration in Telerik BackEnd Services (http://www.telerik.com/backend-services) and Telerik AppBuilder (http://www.telerik.com/appbuilder)
+- The certificates required for APNS (Apple Push Notifications Service)everl
 - Active GCM (Google Cloud Messaging) service and Google project API key
 
 ### Install
