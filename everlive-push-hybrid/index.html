@@ -13,9 +13,9 @@
         </section>
         <!--MAIN VIEW -->
         <div data-role="view" id="welcome" data-layout="default" class="welcome-scrn form-view" data-model="app.viewModels.main">
-            <h1><b>Everlive</b> sample application</h1>
+            <h1><b>Telerik BackEnd Services</b> sample application</h1>
             <p id="messageParagraph" style="color: white; font-size: 16px;">
-                Welcome to the Everlive push notifications sample hybrid app.<br />
+                Welcome to the Telerik BackEnd Services push notifications sample hybrid app.<br />
                 <br />
                 Tap on the button below to enable push notifications on the device.
             </p>
@@ -29,21 +29,17 @@
                 <a id="unregisterButton" style="display: none;" data-role="button" data-bind="events: { click: disablePushNotifications }" class="btn-big">Disable Notifications</a>
             </div>
             <div data-role="footer">
-                <p>Powered by Icenium Everlive.</p>
+                <p>Powered by Telerik AppBuilder.</p>
             </div>
         </div>
         
         <script src="cordova.js"></script>
-        <script src="Plugins/PushPlugin/PushNotification.js"></script>
         
         <script src="kendo/js/jquery.min.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script>
         
-        <script src="scripts/lib/reqwest.js"></script>
-        <script src="scripts/lib/rsvp.js"></script>
-        <script src="scripts/lib/underscore.js"></script>
-        <script src="scripts/lib/everlive.min.js"></script>
-        <script src="scripts/lib/kendo.data.everlive.js"></script>
+        <script src="scripts/lib/everlive.all.js"></script>
+
         
         <script src="scripts/app/main.js" type="text/javascript"></script>
     </body>
