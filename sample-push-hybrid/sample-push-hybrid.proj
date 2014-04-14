@@ -17,6 +17,7 @@
     <AndroidVersionCode>1</AndroidVersionCode>
     <FrameworkVersion>3.2.0</FrameworkVersion>
     <CorePlugins>org.apache.cordova.console;org.apache.cordova.device;org.apache.cordova.globalization;com.phonegap.plugins.PushPlugin;org.apache.cordova.splashscreen</CorePlugins>
+    <WP8SupportedResolutions>ID_RESOLUTION_WVGA;ID_RESOLUTION_WXGA;ID_RESOLUTION_HD720P</WP8SupportedResolutions>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>
