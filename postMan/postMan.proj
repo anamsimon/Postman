@@ -4,7 +4,7 @@
     <ProjectGuid>9f5b4aad-2a66-44ce-8c28-3377a9371c1b</ProjectGuid>
     <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
     <AppIdentifier>com.telerik.test2</AppIdentifier>
-    <ProjectName>sample-push-hybrid</ProjectName>
+    <ProjectName>postMan</ProjectName>
     <IsRunnable>true</IsRunnable>
     <AndroidPermissions>android.permission.CAMERA;android.permission.VIBRATE;android.permission.ACCESS_COARSE_LOCATION;android.permission.ACCESS_FINE_LOCATION;android.permission.ACCESS_LOCATION_EXTRA_COMMANDS;android.permission.READ_PHONE_STATE;android.permission.INTERNET;android.permission.RECEIVE_SMS;android.permission.RECORD_AUDIO;android.permission.MODIFY_AUDIO_SETTINGS;android.permission.READ_CONTACTS;android.permission.WRITE_CONTACTS;android.permission.WRITE_EXTERNAL_STORAGE;android.permission.ACCESS_NETWORK_STATE;android.permission.ACCOUNT_MANAGER;android.permission.GET_ACCOUNTS;android.permission.MANAGE_ACCOUNTS;android.permission.BROADCAST_STICKY;android.permission.GET_TASKS;android.permission.WAKE_LOCK</AndroidPermissions>
     <DeviceOrientations>Portrait;Landscape</DeviceOrientations>
