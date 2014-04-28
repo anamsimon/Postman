@@ -1,4 +1,0 @@
-MobileProject
-=============
-
-Integratable messaging
