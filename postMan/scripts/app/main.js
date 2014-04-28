@@ -1,11 +1,12 @@
+//this is test
 //This is your Telerik BackEnd Services API key.
-var baasApiKey = 'BAAS_API_KEY';
+var baasApiKey = 'ZC4pI8IMrNUAkvUX';
 
 //This is the scheme (http or https) to use for accessing Telerik BackEnd Services.
 var baasScheme = 'http';
 
 //This is your Android project number. It is required by Google in order to enable push notifications for your app. You do not need it for iPhone.
-var androidProjectNumber = 'GOOGLE_PROJECT_NUMBER';
+var androidProjectNumber = '665903716372';
 
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
