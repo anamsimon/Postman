@@ -1,11 +1,11 @@
-define(["Backbone", "models/app"], function (Backbone, app) {
-    var appCollection = Backbone.Collection.extend({
-        model: app,
+define(["Backbone", "models/App"], function (Backbone, App) {
+    var AppCollection = Backbone.Collection.extend({
+        model: App,
 
         initialize: function () {
         }
 
     });
 
-    return appCollection;
+    return AppCollection;
 });

@@ -57,9 +57,13 @@
     <Content Include="scripts\libs\require\require.js" />
     <Content Include="scripts\libs\require\text.js" />
     <Content Include="scripts\libs\underscore\underscore.js" />
+    <Content Include="scripts\messageHandler.js" />
+    <Content Include="scripts\repository.js" />
     <Content Include="scripts\main.js" />
-    <Content Include="scripts\models\app.js" />
-    <Content Include="scripts\models\appCollection.js" />
+    <Content Include="scripts\models\MessageCollection.js" />
+    <Content Include="scripts\models\Message.js" />
+    <Content Include="scripts\models\App.js" />
+    <Content Include="scripts\models\AppCollection.js" />
     <Content Include="scripts\views\app\appView.js" />
     <Content Include="scripts\views\app\appView.htm" />
     <Content Include="scripts\views\home\HomeView.htm" />

@@ -36,9 +36,7 @@ require.config({
         jqm: {
             deps: ['jquery', 'jqmNavigator']
         },
-        jqTmpl: {
-            deps: ['jquery']
-        }
+        jqTmpl: { deps: ['jquery'], exports: 'jQuery' }
     }
 });
 
@@ -56,8 +54,8 @@ var androidProjectNumber = '665903716372';
 var emulatorMode = true;
 
 
-require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', 'jqm'],
-    function (domReady, HomeView, everliveX) {
+require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', 'repository','jqm'],
+    function (domReady, HomeView, everliveX, repository) {
 
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
@@ -82,7 +80,8 @@ require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', '
                     apiKey: baasApiKey,
                     scheme: baasScheme
                 });
-                $.mobile.jqmNavigator.pushView(new HomeView());
+                var apps = repository.GetApps();
+                $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (args) {
                     alert(JSON.stringify(args));

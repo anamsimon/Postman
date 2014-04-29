@@ -17,7 +17,9 @@ define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/ap
             },
 
             render:function () {
-                this.$el.html($(Template));
+                //this.$el.html($(Template));
+                this.$el = $(Template);
+                this.$el.find('#appGrid').append(this.$el.find('#tmpl-app-btn').tmpl(this.model));
                 return this;
             },
 
