@@ -6,10 +6,10 @@
  * Time: 9:53 AM
  */
 
-define(['underscore', 'Backbone', 'text!views/next/NextView.tpl'],
+define(['underscore', 'Backbone', 'text!views/app/appView.tpl'],
     function (_, Backbone, Template) {
 
-        var NextView = Backbone.View.extend({
+        var appView = Backbone.View.extend({
 
             events:{
                 'click #btnBack':'btnBack_clickHandler'
@@ -26,5 +26,5 @@ define(['underscore', 'Backbone', 'text!views/next/NextView.tpl'],
 
         });
 
-        return NextView;
+        return appView;
     });

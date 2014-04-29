@@ -57,6 +57,10 @@
     <Content Include="scripts\libs\require\text.js" />
     <Content Include="scripts\libs\underscore\underscore.js" />
     <Content Include="scripts\main.js" />
+    <Content Include="scripts\models\app.js" />
+    <Content Include="scripts\models\appCollection.js" />
+    <Content Include="scripts\views\app\appView.js" />
+    <Content Include="scripts\views\app\appView.tpl" />
     <Content Include="scripts\views\home\HomeView.js" />
     <Content Include="scripts\views\home\HomeView.tpl" />
     <Content Include="scripts\views\next\NextView.js" />
@@ -114,8 +118,10 @@
     <Folder Include="scripts\libs\jquery\" />
     <Folder Include="scripts\libs\require\" />
     <Folder Include="scripts\libs\underscore\" />
+    <Folder Include="scripts\models\" />
     <Folder Include="scripts\views\" />
     <Folder Include="scripts\views\home\" />
+    <Folder Include="scripts\views\app\" />
     <Folder Include="scripts\views\next\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />
