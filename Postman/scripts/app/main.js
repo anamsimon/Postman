@@ -49,7 +49,7 @@ var app = (function () {
             $("#initializeButton").hide();
             $("#registerButton").hide();
             $("#unregisterButton").show();
-            $("#messageParagraph").html(successText + "Device is registered in Telerik BackEnd Services and can receive push notifications.");
+            $("#messageParagraph").html(successText + "Device is registered in Telerik BackEnd Services and can receive push notifications.");           
         };
         
         var _onDeviceIsNotRegistered = function() {
@@ -69,7 +69,8 @@ var app = (function () {
         };
         
         var onAndroidPushReceived = function(args) {
-            alert('Android notification received: ' + JSON.stringify(args)); 
+            //alert('Android notification received: ' + JSON.stringify(args));
+            $("#recievedMessage").append("<p>" + JSON.stringify(args) + "</p>");
         };
         
         var onIosPushReceived = function(args) {
