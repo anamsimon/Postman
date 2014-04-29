@@ -21,7 +21,9 @@ require.config({
         // jQuery Mobile framework
         jqm: 'libs/jquery.mobile/jquery.mobile-1.2.0',
         // jQuery Mobile plugin for Backbone views navigation
-        jqmNavigator: 'libs/jquery.mobile/jqmNavigator'
+        jqmNavigator: 'libs/jquery.mobile/jqmNavigator',
+        jqTmpl: 'libs/jquery.tmpl/jquery.tmpl'
+
     },
     shim: {
         Backbone: {
@@ -33,6 +35,9 @@ require.config({
         },
         jqm: {
             deps: ['jquery', 'jqmNavigator']
+        },
+        jqTmpl: {
+            deps: ['jquery']
         }
     }
 });

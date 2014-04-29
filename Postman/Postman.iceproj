@@ -51,6 +51,7 @@
     <Content Include="scripts\libs\jquery.mobile\jqmNavigator.js" />
     <Content Include="scripts\libs\jquery.mobile\jquery.mobile-1.2.0.css" />
     <Content Include="scripts\libs\jquery.mobile\jquery.mobile-1.2.0.js" />
+    <Content Include="scripts\libs\jquery.tmpl\jquery.tmpl.js" />
     <Content Include="scripts\libs\jquery\jquery-1.8.2.js" />
     <Content Include="scripts\libs\require\domReady.js" />
     <Content Include="scripts\libs\require\require.js" />
@@ -60,9 +61,9 @@
     <Content Include="scripts\models\app.js" />
     <Content Include="scripts\models\appCollection.js" />
     <Content Include="scripts\views\app\appView.js" />
-    <Content Include="scripts\views\app\appView.tpl" />
+    <Content Include="scripts\views\app\appView.htm" />
+    <Content Include="scripts\views\home\HomeView.htm" />
     <Content Include="scripts\views\home\HomeView.js" />
-    <Content Include="scripts\views\home\HomeView.tpl" />
     <Content Include="scripts\views\next\NextView.js" />
     <Content Include="scripts\views\next\NextView.tpl" />
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
@@ -116,6 +117,7 @@
     <Folder Include="scripts\libs\jquery.mobile\" />
     <Folder Include="scripts\libs\jquery.mobile\images\" />
     <Folder Include="scripts\libs\jquery\" />
+    <Folder Include="scripts\libs\jquery.tmpl\" />
     <Folder Include="scripts\libs\require\" />
     <Folder Include="scripts\libs\underscore\" />
     <Folder Include="scripts\models\" />

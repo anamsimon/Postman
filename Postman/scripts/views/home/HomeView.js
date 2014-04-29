@@ -6,8 +6,9 @@
  * Time: 9:53 AM
  */
 
-define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/appView', 'text!views/home/HomeView.tpl'],
-    function ($, _, Backbone, NextView,appView, Template) {
+define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/appView', 
+    'text!views/home/HomeView.htm','models/app'],
+    function ($, _, Backbone, NextView,appView, Template, app) {
         var HomeView = Backbone.View.extend({
 
             events:{
@@ -16,7 +17,7 @@ define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/ap
             },
 
             render:function () {
-                this.$el.html(_.template(Template));
+                this.$el.html($(Template));
                 return this;
             },
 
@@ -25,9 +26,9 @@ define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/ap
             },
 
             btnApp_clickHandler: function (event) {
-                $.mobile.jqmNavigator.pushView(new appView);
-            }
+                $.mobile.jqmNavigator.pushView(new appView({ model: { Name: $(event.target).data('name') } }));
+    }
 
-        });
-        return HomeView;
-    });
+});
+return HomeView;
+});

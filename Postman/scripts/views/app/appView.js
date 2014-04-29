@@ -6,7 +6,7 @@
  * Time: 9:53 AM
  */
 
-define(['underscore', 'Backbone', 'text!views/app/appView.tpl'],
+define(['underscore', 'Backbone', 'text!views/app/appView.htm'],
     function (_, Backbone, Template) {
 
         var appView = Backbone.View.extend({
@@ -16,7 +16,7 @@ define(['underscore', 'Backbone', 'text!views/app/appView.tpl'],
             },
 
             render:function () {
-                this.$el.html(_.template(Template));
+                this.$el.html($(Template)).find('#appName').html(this.model.Name);
                 return this;
             },
 
