@@ -140,3 +140,4 @@
 [0429/005937:ERROR:cef_context.cc(458)] No localized string available for id 18048
 [0429/005937:ERROR:cef_context.cc(458)] No localized string available for id 18045
 [0429/005937:ERROR:cef_context.cc(458)] No localized string available for id 18043
+[0429/231728:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
