@@ -97,10 +97,11 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    $(messageBar).html(JSON.stringify(notification));
+                    $('#message').html(JSON.stringify(notification));
+                    alert(JSON.stringify(notification));
                     var message = notificationHandler.Get(notification);
                     $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
-                    //alert(JSON.stringify(notification));
+                    alert(JSON.stringify(notification));
                 }, function () { });
 
 
