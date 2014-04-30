@@ -54,7 +54,7 @@ var baasScheme = 'http';
 var androidProjectNumber = '665903716372';
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
-var emulatorMode = true;
+var emulatorMode = false;
 
 var MessageViewLoaded = false;
 
