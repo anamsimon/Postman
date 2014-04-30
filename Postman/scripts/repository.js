@@ -1,22 +1,27 @@
-define(['jquery', 'models/app', 'models/appCollection'], function ($, App, AppCollection) {
-    var appNames = ['BrandShare', 'Marcombox', 'Zabbix'];
-
+define(['jquery', 'models/App', 'models/AppCollection'], function ($, App, AppCollection) {
+    var _AppNames = ['BrandShare', 'Marcombox', 'Zabbix'];
+    var _Apps;
     var repository = function () {
         this.GetApps = function () {
             var storage = new localStorageApp();
-            var apps = new AppCollection();
-            for (var i = 0; i < appNames.length; i++) {
+
+            if (_Apps == null)
+                _Apps = new AppCollection();
+
+            for (var i = 0; i < _AppNames.length; i++) {
                 var app;
-                var appJSON = storage.Get(appNames[i]);
+                var appJSON;
+                //var appJSON = storage.Get(_AppNames[i]);
                 if (appJSON == null) {
-                    app = new App({ Name: appNames[i] });
+                    app = new App({ Name: _AppNames[i]  });
+                    //storage.Set(_AppNames[i], app.toJSON());
                 }
                 else {
-                    app = new App(JSON.parse(appJSON));
+                    //app = new App(JSON.parse(appJSON));
                 }
-                apps.add(app);
+                _Apps.add(app);
             }
-            return apps;
+            return _Apps;
         }
     }
 

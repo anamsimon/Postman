@@ -11,20 +11,14 @@ define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/ap
     function ($, _, Backbone, NextView,appView, Template, app) {
         var HomeView = Backbone.View.extend({
 
-            events:{
-                'click #btnNextView': 'btnNextView_clickHandler',
+            events:{              
                 'click .btnApp':'btnApp_clickHandler'
             },
 
             render:function () {
-                //this.$el.html($(Template));
-                this.$el = $(Template);
-                this.$el.find('#appGrid').append(this.$el.find('#tmpl-app-btn').tmpl(this.model));
+                this.$el.html($(Template));                
+                this.$el.find('#appGrid').append(this.$el.find('#tmpl-app-btn').tmpl(this.model.toJSON()));
                 return this;
-            },
-
-            btnNextView_clickHandler:function (event) {
-                $.mobile.jqmNavigator.pushView(new NextView);
             },
 
             btnApp_clickHandler: function (event) {

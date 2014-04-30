@@ -26,17 +26,20 @@ require.config({
 
     },
     shim: {
+        jquery: {
+            exports: '$'
+        },
         Backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         underscore: {
             exports: '_'
-        },
+        },        
         jqm: {
             deps: ['jquery', 'jqmNavigator']
         },
-        jqTmpl: { deps: ['jquery'], exports: 'jQuery' }
+        jqTmpl: { deps: ['jquery'], exports: '$' }
     }
 });
 
@@ -51,11 +54,11 @@ var baasScheme = 'http';
 var androidProjectNumber = '665903716372';
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
-var emulatorMode = true;
+var emulatorMode = false;
 
 
-require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', 'repository','jqm'],
-    function (domReady, HomeView, everliveX, repository) {
+require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', 'repository', 'jqm', 'jqTmpl','messageHandler'],
+    function (domReady, HomeView, everliveX, repository, messageHandler) {
 
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
@@ -83,8 +86,9 @@ require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', '
                 var apps = repository.GetApps();
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
 
-                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (args) {
-                    alert(JSON.stringify(args));
+                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
+                    //var message = messageHandler.Get(notification);
+                    alert(JSON.stringify(notification));
                 }, function () { });
 
 

@@ -3,13 +3,16 @@ define(['Backbone', 'underscore'],
         var Message = Backbone.Model.extend(
             {
                 defaults: {
+                    sender:'',
                     body: '',
                     type: '',
                     reply: '',
                     recieved:'',
                     isRead: false
                 },
-                initialize: function () {                    
+                initialize: function (from, msg) {
+                    this.sender = from;
+                    this.message= msg;
                 }
             }
         );
