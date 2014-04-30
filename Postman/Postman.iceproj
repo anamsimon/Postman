@@ -274,7 +274,7 @@
     <Content Include="scripts\views\app\AppView.htm" />
     <Content Include="scripts\views\home\HomeView.htm" />
     <Content Include="scripts\views\home\HomeView.js" />
-    <Content Include="scripts\views\message\messageView.htm" />
+    <Content Include="scripts\views\message\MessageView.htm" />
     <Content Include="scripts\views\message\MessageView.js" />
     <Content Include="scripts\views\next\NextView.js" />
     <Content Include="scripts\views\next\NextView.tpl" />

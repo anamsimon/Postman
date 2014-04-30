@@ -19,14 +19,27 @@ define(['underscore', 'Backbone', 'text!views/app/AppView.htm', 'repository'],
                 var self = this;
                 this.$el.html($(Template)).find('#appName').html(this.model.Name);
                 var listview = this.$el.find('#msg-listview');
-                var itemTemplate = this.$el.find('#tmpl-msg-list-item');
 
-                repository.GetMessageBySender(this.model.Name, function (messages) {
-                    self.model.Messages = messages;
-                    self.model.Messages.each(function (message) {
-                        listview.append(itemTemplate.tmpl(message.toJSON()));
-                    });
+                var listTemplate = this.$el.find('#tmpl-list');
+                var dividerTemplate = this.$el.find('#tmpl-list-divider');
+                var itemTemplate = this.$el.find('#tmpl-list-item');
+
+                var list = listTemplate.tmpl();
+                self.model.Messages.each(function (message) {
+                    list.append(dividerTemplate.tmpl());
+                    list.append(itemTemplate.tmpl(message.toJSON()));
                 });
+                listview.append(list);
+
+                //repository.GetMessageBySender(this.model.Name, function (messages) {
+                //    self.model.Messages = messages;
+                //    var list = listTemplate.tmpl();
+                //    self.model.Messages.each(function (message) {
+                //        list.append(dividerTemplate.tmpl());
+                //        list.append(itemTemplate.tmpl(message.toJSON()));
+                //    });
+                //    listview.append(list);
+                //});
                 return this;
             },
 

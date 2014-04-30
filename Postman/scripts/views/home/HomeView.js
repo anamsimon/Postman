@@ -7,8 +7,8 @@
  */
 
 define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/AppView', 
-    'text!views/home/HomeView.htm','models/App'],
-    function ($, _, Backbone, NextView,AppView, Template, App) {
+    'text!views/home/HomeView.htm', 'models/App', 'repository'],
+    function ($, _, Backbone, NextView, AppView, Template, App, repository) {
         var HomeView = Backbone.View.extend({
 
             events:{              
@@ -22,7 +22,11 @@ define(['jquery', 'underscore', 'Backbone', 'views/next/NextView', 'views/app/Ap
             },
 
             btnApp_clickHandler: function (event) {
-                $.mobile.jqmNavigator.pushView(new AppView({ model: { Name: $(event.target).data('name') } }));
+                var name = $(event.target).data('name');
+                repository.GetMessageBySender(name, function (messages) {
+                    $.mobile.jqmNavigator.pushView(new AppView({ model: { Name: $(event.target).data('name'), Messages:messages } }));
+                });
+
     }
 
 });

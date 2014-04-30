@@ -4,9 +4,9 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
 
     var db = window.openDatabase("postmanDB", "1.0", "Postman DB", 1000000);
     var _tableName = 'Notification';
-    var _tableCreateSql = 'CREATE TABLE IF NOT EXISTS ' + _tableName + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, sender, message, isRead)';
-    var _tableDropSql = 'DROP TABLE IF EXISTS  ' + _tableName ;
-    
+    var _tableCreateSql = 'CREATE TABLE IF NOT EXISTS ' + _tableName + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, sender, message, recievedOn, isRead)';
+    var _tableDropSql = 'DROP TABLE IF EXISTS  ' + _tableName;
+
 
     var repository = function () {
         this.Init = function () {
@@ -35,12 +35,12 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
 
         this.InsertMessage = function (message, onSuccess) {
             var isRead = message.get('isRead') == true ? 1 : 0;
-            var insertSql = 'INSERT INTO ' + _tableName + ' ( sender, message, isRead) VALUES ("'
-                + message.get('sender') + '","' + message.get('message') + '",' + isRead + ')';
+            var insertSql = 'INSERT INTO ' + _tableName + ' ( sender, message, recievedOn, isRead) VALUES ("'
+                + message.get('sender') + '","' + message.get('message') + '","' + message.get('recievedOn').toString() + '",' + isRead + ')';
             insertDB(insertSql, errorCB, onSuccess);
         }
 
-        this.GetMessageBySender = function (sender, onSuccess) {            
+        this.GetMessageBySender = function (sender, onSuccess) {
             querySql = 'SELECT * FROM ' + _tableName + ' WHERE sender="' + sender + '"';
 
             queryDB(querySql, function (rows) {
@@ -53,7 +53,7 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
                         message: item.message,
                         type: '',
                         reply: '',
-                        recievedOn: '',
+                        recievedOn: new Date(item.recievedOn),
                         isRead: read
                     });
                     messages.add(msg);
@@ -71,7 +71,7 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
                     }, errorCB, successCB);
                 }
             });
-            
+
         }
 
         function insertDB(insertSql, onSuccess) {
@@ -98,11 +98,11 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
             }, errorCB);
         }
 
-        function isTableExists( tableName, onSuccess) {
+        function isTableExists(tableName, onSuccess) {
             if (tableName == null || db == null) {
                 return false;
             }
-            var query = "SELECT * FROM sqlite_master WHERE type = 'table' AND name = '" + tableName+"'";
+            var query = "SELECT * FROM sqlite_master WHERE type = 'table' AND name = '" + tableName + "'";
 
             db.transaction(function (tx) {
                 tx.executeSql(query, [], function (tx, results) {
