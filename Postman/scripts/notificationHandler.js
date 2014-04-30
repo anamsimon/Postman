@@ -2,13 +2,13 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
     var niddle = 'says';
     var notificationHandler = function () {
         this.Get = function (notification) {
-            notification = notification.payload;
-            var index = notification.indexOf(niddle);
+            payload = notification.payload;
+            var index = payload.indexOf(niddle);
             var sender = '';
             var message = '';
             if (index != -1) {
-                sender = notification.substring(0, index - 1);
-                message = notification.substring(index+1 + niddle.length);
+                sender = payload.substring(0, index - 1);
+                message = payload.substring(index + 1 + niddle.length);
                 return new Message({ sender: sender, body: message });
             }
             return null;

@@ -35,7 +35,7 @@ require.config({
         },
         underscore: {
             exports: '_'
-        },        
+        },
         jqm: {
             deps: ['jquery', 'jqmNavigator']
         },
@@ -75,8 +75,13 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 // Setting default transition to slide
                 $.mobile.defaultPageTransition = 'slide';
 
+                // Error handle
+                window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+                    alert(url + ":" + lineNumber + ": " + errorMsg);
+                    return false;
+                }
+
                 // Pushing MainView
-               
 
                 //Initialize the Telerik BackEnd Services SDK
                 var el = new Everlive({
@@ -85,11 +90,14 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 });
                 var apps = repository.GetApps();
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
-                //var message = notificationHandler.Get({ payload: "BrandShare says \"A brand new activity has been created. Activity Id: 118583\"" });
+                //var notification = { 'payload': 'BrandShare says \A brand new activity has been created. Activity Id: 118583' };
+                //var message = notificationHandler.Get(notification);
+                //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                 //BrandShare says "A brand new activity has been created. Activity Id: 118583"
                 //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
+                    $(messageBar).html(JSON.stringify(notification));
                     var message = notificationHandler.Get(notification);
                     $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                     //alert(JSON.stringify(notification));
