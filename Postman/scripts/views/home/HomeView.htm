@@ -1,15 +1,19 @@
-    <div data-role="header" data-position="fixed">
-        <h1>Postman</h1>
-    </div>
-    <div data-role="content">
-        <div id="appGrid">
-            <!--<button class="btnApp" data-name="BrandShare">BrandShare</button>
+<div data-role="header" data-position="fixed">
+    <h1>Postman</h1>
+</div>
+<div data-role="content">
+    <div id="appGrid">
+        <!--<button class="btnApp" data-name="BrandShare">BrandShare</button>
             <button class="btnApp" data-name="Marcombox">Marcombox</button>
             <button class="btnApp" data-name="Zabbix">Zabbix</button>-->
-        </div>
-        <div id="message"></div>        
     </div>
-    <script id="tmpl-app-btn" type="text/x-jquery-tmpl">
-        <button class="btnApp" data-name="${Name}">${Name}</button>
-    </script>
+    <div id="message"></div>
+</div>
+<script id="tmpl-app-btn" type="text/x-jquery-tmpl">
+    <button class="btnApp" data-name="${Name}">
+        ${Name}
+        {{if UnreadMessageCount > 0}}
+            <span class="ui-li-count ui-body-inherit">${UnreadMessageCount}</span>
+        {{else}}<span></span>{{/if}}</button>
+</script>
 

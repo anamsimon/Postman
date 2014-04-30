@@ -3,6 +3,7 @@ define(['Backbone', 'underscore'],
         var Message = Backbone.Model.extend(
             {
                 defaults: {
+                    id:'',
                     sender:'',
                     message: '',
                     type: '',

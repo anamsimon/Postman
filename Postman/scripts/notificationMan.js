@@ -1,7 +1,7 @@
-define(['jquery', 'repository', 'models/Message'], function ($, repository, Message) {
+define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan, Message) {
     var niddle = 'says';
-    var notificationHandler = function () {
-        this.Get = function (notification) {
+    var notificationMan = function () {
+        this.Process = function (notification) {
             //notification = JSON.parse(notification);            
             var index = notification.message.indexOf(niddle);
             var sender = '';
@@ -9,7 +9,9 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
             if (index != -1) {
                 sender = notification.message.substring(0, index - 1);
                 message = notification.message.substring(index + 1 + niddle.length);
-                return new Message({ sender: sender, message: message, isRead: false, recievedOn: new Date() });
+                var processedMsg = new Message({ sender: sender, message: message, isRead: false, recievedOn: new Date() });
+                repositoryMan.InsertMessage(processedMsg);
+                return processedMsg;
             }
             return null;
         }
@@ -24,5 +26,5 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
     //coldstart
 
 
-    return new notificationHandler();
+    return new notificationMan();
 });

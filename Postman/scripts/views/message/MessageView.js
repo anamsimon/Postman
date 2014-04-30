@@ -1,11 +1,3 @@
-/**
- * Created by Piotr Walczyszyn (outof.me | @pwalczyszyn)
- *
- * User: pwalczys
- * Date: 2/16/12
- * Time: 9:53 AM
- */
-
 define(['underscore', 'Backbone', 'text!views/message/MessageView.htm'],
     function (_, Backbone, Template) {
 
@@ -18,10 +10,12 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm'],
             render: function () {
                 this.$el.html($(Template)).find('#appName').html(this.model.get('sender'));
                 this.$el.find('#messageContent').html(this.$el.find('#tmpl-msg').tmpl(this.model.toJSON()));
+                MessageViewLoaded = true;
                 return this;
             },
             btnBack_clickHandler: function (event) {
                 $.mobile.jqmNavigator.popView();
+                MessageViewLoaded = false;
             }
 
         });

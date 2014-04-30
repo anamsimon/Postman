@@ -10,13 +10,11 @@
     </ul>
 </script>
 <script id="tmpl-list-item" type="text/x-jquery-tmpl">
-    <li><a href="index.html">
-        <h2>Avery Walker</h2>        
-        <p>${message}</p>
-        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+    <li data-id="${id}" class="btnMsg"><a href="#"  data-id="${id}" >
+        <p  data-id="${id}" >${message}</p>       
     </a></li>
 </script>
 <script id="tmpl-list-divider" type="text/x-jquery-tmpl">
-    <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
+    <li data-role="list-divider">${recievedDate}</li>
 </script>
 

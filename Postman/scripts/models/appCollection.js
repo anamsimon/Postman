@@ -2,8 +2,10 @@ define(["Backbone", "models/App"], function (Backbone, App) {
     var AppCollection = Backbone.Collection.extend({
         model: App,
 
-        initialize: function () {
-        }
+        GetByName: function (name) {
+            return this.where({ Name: name });
+        },
+        
 
     });
 

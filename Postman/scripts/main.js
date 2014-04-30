@@ -56,9 +56,10 @@ var androidProjectNumber = '665903716372';
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
 var emulatorMode = true;
 
+var MessageViewLoaded = false;
 
-require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/everlive/everlive.extended', 'repository', 'notificationHandler', 'jqm', 'jqTmpl'],
-    function (domReady, HomeView, MessageView, everliveX, repository, notificationHandler) {
+require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/everlive/everlive.extended', 'repositoryMan', 'notificationMan', 'jqm', 'jqTmpl'],
+    function (domReady, HomeView, MessageView, everliveX, repositoryMan, notificationMan) {
 
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
@@ -89,26 +90,42 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                     scheme: baasScheme
                 });
 
-                repository.Init();
+                repositoryMan.Init();
 
-                var apps = repository.GetApps();
-                $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
+                var apps = repositoryMan.GetApps();
+                var homeView = new HomeView({ model: apps });
+                $.mobile.jqmNavigator.pushView(homeView);
 
-                var notification = {
-                    "message": "Marcombox says A brand new activity has been created. Activity Id: 118583",
-                    "payload": { "message": "Marcombox says A brand new activity has been created. Activity Id: 118583" }
-                };
-                //alert(notification);
-                var message = notificationHandler.Get(notification);
-                //repository.InsertMessage(message);
+                //var notification = {
+                //    "message": "BrandShare says A brand new activity has been created. Activity Id: 118583",
+                //    "payload": { "message": "Marcombox says A brand new activity has been created. Activity Id: 118583" }
+                //};
+                ////alert(notification);
+                //var message = notificationMan.Process(notification);
+                //repositoryMan.InsertMessage(message);
                 //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                //if (MessageViewLoaded) {
+                //    var fApps = apps.GetByName(message.get('sender'));
+                //    if (fApps.length > 0) {
+                //        var app = fApps[0];
+                //        app.AddUnreadCount(1);
+                //        //homeView.updateCount(app);                       
+                //    }
+                //}
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    //$('#message').html(JSON.stringify(notification));
-                    //alert(notification);
-                    var message = notificationHandler.Get(notification);
-                    //alert(message);
-                    $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                    var message = notificationMan.Process(notification);
+                    if (MessageViewLoaded) {
+                        var fApps = apps.GetByName(message.get('sender'));
+                        if (fApps.length > 0) {
+                            var app = fApps[0];
+                            app.AddUnreadCount(1);
+                            //homeView.updateCount(app);
+                        }
+                    }
+                    else {
+                        $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                    }
                 }, function () { });
 
 
