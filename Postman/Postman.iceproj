@@ -263,7 +263,7 @@
     <Content Include="scripts\libs\require\require.js" />
     <Content Include="scripts\libs\require\text.js" />
     <Content Include="scripts\libs\underscore\underscore.js" />
-    <Content Include="scripts\messageHandler.js" />
+    <Content Include="scripts\notificationHandler.js" />
     <Content Include="scripts\repository.js" />
     <Content Include="scripts\main.js" />
     <Content Include="scripts\models\MessageCollection.js" />

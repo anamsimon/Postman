@@ -87,7 +87,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
                 //var message = notificationHandler.Get({ payload: "BrandShare says \"A brand new activity has been created. Activity Id: 118583\"" });
                 //BrandShare says "A brand new activity has been created. Activity Id: 118583"
-                KC$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
                     var message = notificationHandler.Get(notification);
