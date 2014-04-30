@@ -6,7 +6,7 @@
  * Time: 9:53 AM
  */
 
-define(['underscore', 'Backbone', 'text!views/message/messageView.htm'],
+define(['underscore', 'Backbone', 'text!views/message/MessageView.htm'],
     function (_, Backbone, Template) {
 
         var MessageView = Backbone.View.extend({

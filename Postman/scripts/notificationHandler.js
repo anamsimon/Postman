@@ -9,7 +9,7 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
             if (index != -1) {
                 sender = notification.message.substring(0, index - 1);
                 message = notification.message.substring(index + 1 + niddle.length);
-                return new Message({ sender: sender, body: message });
+                return new Message({ sender: sender, message: message, isRead: false });
             }
             return null;
         }

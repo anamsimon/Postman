@@ -4,10 +4,10 @@ define(['Backbone', 'underscore'],
             {
                 defaults: {
                     sender:'',
-                    body: '',
+                    message: '',
                     type: '',
                     reply: '',
-                    recieved:'',
+                    recievedOn:'',
                     isRead: false
                 },
                 initialize: function () {
