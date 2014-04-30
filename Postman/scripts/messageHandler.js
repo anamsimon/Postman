@@ -2,6 +2,7 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
     var niddle = 'says';
     var messageHandler = function () {
         this.Get = function (notification) {
+            notification = notification.payload;
             var index = notification.indexOf(niddle);
             var sender = '';
             var message = '';
@@ -13,6 +14,15 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
             return null;
         }
     }
+
+    //message
+    //payload
+    //collapse_key
+    //from
+    //foreground
+    //event
+    //coldstart
+
 
     return new messageHandler();
 });

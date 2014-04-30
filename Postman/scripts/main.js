@@ -17,9 +17,9 @@ require.config({
         // Backbone.js library
         Backbone: 'libs/backbone/backbone',
         // jQuery
-        jquery: 'libs/jquery/jquery-1.8.2',
+        jquery: 'libs/jquery/jquery',
         // jQuery Mobile framework
-        jqm: 'libs/jquery.mobile/jquery.mobile-1.2.0',
+        jqm: 'libs/jquery.mobile/jquery.mobile-1.4.2.min',
         // jQuery Mobile plugin for Backbone views navigation
         jqmNavigator: 'libs/jquery.mobile/jqmNavigator',
         jqTmpl: 'libs/jquery.tmpl/jquery.tmpl'
@@ -57,8 +57,8 @@ var androidProjectNumber = '665903716372';
 var emulatorMode = false;
 
 
-require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', 'repository', 'jqm', 'jqTmpl','messageHandler'],
-    function (domReady, HomeView, everliveX, repository, messageHandler) {
+require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/everlive/everlive.extended', 'repository', 'jqm', 'jqTmpl', 'messageHandler'],
+    function (domReady, HomeView,MessageView, everliveX, repository, messageHandler) {
 
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
@@ -85,10 +85,12 @@ require(['domReady', 'views/home/HomeView', 'libs/everlive/everlive.extended', '
                 });
                 var apps = repository.GetApps();
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
+                //$.mobile.jqmNavigator.pushView(new MessageView({ model: {sender:'Sam', body:'this is test'} }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    //var message = messageHandler.Get(notification);
-                    alert(JSON.stringify(notification));
+                    var message = messageHandler.Get(notification);
+                    $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                    //alert(JSON.stringify(notification));
                 }, function () { });
 
 
