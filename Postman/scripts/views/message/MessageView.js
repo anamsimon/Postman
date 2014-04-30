@@ -16,8 +16,8 @@ define(['underscore', 'Backbone', 'text!views/message/messageView.htm'],
             },
 
             render: function () {
-                this.$el.html($(Template)).find('#appName').html(this.model.sender);
-                this.$el.find('#messageContent').html(this.$el.find('#tmpl-msg').tmpl(this.model));
+                this.$el.html($(Template)).find('#appName').html(this.model.get('sender'));
+                this.$el.find('#messageContent').html(this.$el.find('#tmpl-msg').tmpl(this.model.toJSON()));
                 return this;
             },
             btnBack_clickHandler: function (event) {

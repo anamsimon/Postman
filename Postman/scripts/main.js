@@ -57,8 +57,8 @@ var androidProjectNumber = '665903716372';
 var emulatorMode = false;
 
 
-require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/everlive/everlive.extended', 'repository', 'jqm', 'jqTmpl', 'messageHandler'],
-    function (domReady, HomeView,MessageView, everliveX, repository, messageHandler) {
+require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/everlive/everlive.extended', 'repository', 'notificationHandler', 'jqm', 'jqTmpl'],
+    function (domReady, HomeView, MessageView, everliveX, repository, notificationHandler) {
 
         // domReady is RequireJS plugin that triggers when DOM is ready
         domReady(function () {
@@ -85,10 +85,12 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 });
                 var apps = repository.GetApps();
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
-                //$.mobile.jqmNavigator.pushView(new MessageView({ model: {sender:'Sam', body:'this is test'} }));
+                //var message = notificationHandler.Get({ payload: "BrandShare says \"A brand new activity has been created. Activity Id: 118583\"" });
+                //BrandShare says "A brand new activity has been created. Activity Id: 118583"
+                KC$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    var message = messageHandler.Get(notification);
+                    var message = notificationHandler.Get(notification);
                     $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                     //alert(JSON.stringify(notification));
                 }, function () { });

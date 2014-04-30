@@ -1,15 +1,15 @@
 define(['jquery', 'repository', 'models/Message'], function ($, repository, Message) {
     var niddle = 'says';
-    var messageHandler = function () {
+    var notificationHandler = function () {
         this.Get = function (notification) {
             notification = notification.payload;
             var index = notification.indexOf(niddle);
             var sender = '';
             var message = '';
             if (index != -1) {
-                sender = notification.substring(0, niddle - 1);
-                message = notification.substring(niddle + niddle.length);
-                return new Message(sender,message);
+                sender = notification.substring(0, index - 1);
+                message = notification.substring(index+1 + niddle.length);
+                return new Message({ sender: sender, body: message });
             }
             return null;
         }
@@ -24,5 +24,5 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
     //coldstart
 
 
-    return new messageHandler();
+    return new notificationHandler();
 });

@@ -10,9 +10,7 @@ define(['Backbone', 'underscore'],
                     recieved:'',
                     isRead: false
                 },
-                initialize: function (from, msg) {
-                    this.sender = from;
-                    this.message= msg;
+                initialize: function () {
                 }
             }
         );
