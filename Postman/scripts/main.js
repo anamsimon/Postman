@@ -76,10 +76,10 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 $.mobile.defaultPageTransition = 'slide';
 
                 // Error handle
-                window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-                    alert(url + ":" + lineNumber + ": " + errorMsg);
-                    return false;
-                }
+                //window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+                //    alert(url + ":" + lineNumber + ": " + errorMsg);
+                //    return false;
+                //}
 
                 // Pushing MainView
 
@@ -90,16 +90,20 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 });
                 var apps = repository.GetApps();
                 $.mobile.jqmNavigator.pushView(new HomeView({ model: apps }));
-                //var notification = { 'payload': 'BrandShare says \A brand new activity has been created. Activity Id: 118583' };
+
+                //var notification = {
+                //    "message": "BrandShare says A brand new activity has been created. Activity Id: 118583",
+                //    "payload": { "message": "BrandShare says A brand new activity has been created. Activity Id: 118583" }
+                //};
+                ////alert(notification);
                 //var message = notificationHandler.Get(notification);
-                //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
-                //BrandShare says "A brand new activity has been created. Activity Id: 118583"
                 //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
 
                 everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    //'$('#message').html(JSON.stringify(notification));
-                    //alert(JSON.stringify(notification));
+                    //$('#message').html(JSON.stringify(notification));
+                    //alert(notification);
                     var message = notificationHandler.Get(notification);
+                    //alert(message);
                     $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                 }, function () { });
 

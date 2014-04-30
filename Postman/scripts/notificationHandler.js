@@ -2,7 +2,7 @@ define(['jquery', 'repository', 'models/Message'], function ($, repository, Mess
     var niddle = 'says';
     var notificationHandler = function () {
         this.Get = function (notification) {
-            notification = JSON.parse(notification);
+            //notification = JSON.parse(notification);            
             var index = notification.message.indexOf(niddle);
             var sender = '';
             var message = '';
