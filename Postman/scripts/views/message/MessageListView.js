@@ -1,11 +1,3 @@
-/**
- * Created by Piotr Walczyszyn (outof.me | @pwalczyszyn)
- *
- * User: pwalczys
- * Date: 2/16/12
- * Time: 9:53 AM
- */
-
 define(['underscore', 'Backbone', 'text!views/message/MessageListView.htm', 'repositoryMan', 'views/message/MessageView'],
     function (_, Backbone, Template, repositoryMan, MessageView) {
 

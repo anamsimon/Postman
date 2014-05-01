@@ -7,7 +7,7 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm'],
                 'click #btnBack': 'btnBack_clickHandler'
             },
 
-            render: function () {
+            render: function () {                
                 this.$el.html($(Template)).find('#appName').html(this.model.get('sender'));
                 this.$el.find('#messageContent').html(this.$el.find('#tmpl-msg').tmpl(this.model.toJSON()));
                 MessageViewLoaded = true;

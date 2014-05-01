@@ -54,7 +54,7 @@ var baasScheme = 'http';
 var androidProjectNumber = '665903716372';
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
-var emulatorMode = false;
+var emulatorMode = true;
 
 var MessageViewLoaded = false;
 
@@ -97,7 +97,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 $.mobile.jqmNavigator.pushView(homeView);
 
                 //var notification = {
-                //    "message": "BrandShare says A brand new activity has been created. Activity Id: 118583",
+                //    "message": "Marcombox says A brand new activity has been created. Activity Id: 118583",
                 //    "payload": { "message": "Marcombox says A brand new activity has been created. Activity Id: 118583" }
                 //};
                 ////alert(notification);
