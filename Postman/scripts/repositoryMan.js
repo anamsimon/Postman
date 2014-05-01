@@ -64,7 +64,7 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
             }
 
             this.GetMessageBySender = function (sender, onSuccess) {
-                querySql = 'SELECT * FROM ' + _tableName + ' WHERE sender="' + sender + '"';
+                querySql = 'SELECT * FROM ' + _tableName + ' WHERE sender="' + sender + '" ORDER BY id DESC';
 
                 queryDB(querySql, function (rows) {
                     var messages = new MessageCollection();

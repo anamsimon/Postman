@@ -5,6 +5,11 @@
 <div data-role="content" id="messageContent">
 </div>
 <script id="tmpl-msg" type="text/x-jquery-tmpl">
-    <div class="ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all"><p>${message}</p></div>
+    <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider">${recievedOn.toLocaleDateString()}</li>
+        <li>
+            <p class="customWrap">${message}</p>
+            <p><strong>${recievedOn.toLocaleTimeString()}</strong></p>
+        </li>
+    </ul>
 </script>
-

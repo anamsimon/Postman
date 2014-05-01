@@ -28,3 +28,8 @@ div[data-role="content"] {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
+
+.ui-listview>li p
+{
+    white-space: normal;
+}

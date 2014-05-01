@@ -270,14 +270,12 @@
     <Content Include="scripts\models\Message.js" />
     <Content Include="scripts\models\App.js" />
     <Content Include="scripts\models\AppCollection.js" />
-    <Content Include="scripts\views\app\AppView.js" />
-    <Content Include="scripts\views\app\AppView.htm" />
+    <Content Include="scripts\views\message\MessageListView.js" />
+    <Content Include="scripts\views\message\MessageListView.htm" />
     <Content Include="scripts\views\home\HomeView.htm" />
     <Content Include="scripts\views\home\HomeView.js" />
     <Content Include="scripts\views\message\MessageView.htm" />
     <Content Include="scripts\views\message\MessageView.js" />
-    <Content Include="scripts\views\next\NextView.js" />
-    <Content Include="scripts\views\next\NextView.tpl" />
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
@@ -337,9 +335,7 @@
     <Folder Include="scripts\models\" />
     <Folder Include="scripts\views\" />
     <Folder Include="scripts\views\home\" />
-    <Folder Include="scripts\views\app\" />
     <Folder Include="scripts\views\message\" />
-    <Folder Include="scripts\views\next\" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />
   <!--

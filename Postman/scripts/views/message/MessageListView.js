@@ -6,10 +6,10 @@
  * Time: 9:53 AM
  */
 
-define(['underscore', 'Backbone', 'text!views/app/AppView.htm', 'repositoryMan', 'views/message/MessageView'],
+define(['underscore', 'Backbone', 'text!views/message/MessageListView.htm', 'repositoryMan', 'views/message/MessageView'],
     function (_, Backbone, Template, repositoryMan, MessageView) {
 
-        var AppView = Backbone.View.extend({
+        var MessageListView = Backbone.View.extend({
 
             events: {
                 'click #btnBack': 'btnBack_clickHandler',
@@ -31,7 +31,7 @@ define(['underscore', 'Backbone', 'text!views/app/AppView.htm', 'repositoryMan',
                 self.model.Messages.each(function (message) {
                     if (date != message.get('recievedOn').toDateString()) {
                         date = message.get('recievedOn').toDateString();
-                        list.append(dividerTemplate.tmpl({ recievedDate: date }));
+                        list.append(dividerTemplate.tmpl({ recievedDate: message.get('recievedOn').toLocaleDateString() }));
                     }
                     list.append(itemTemplate.tmpl(message.toJSON()));
                     if (message.get('isRead') == false) {
@@ -40,17 +40,7 @@ define(['underscore', 'Backbone', 'text!views/app/AppView.htm', 'repositoryMan',
                         })
                     }
                 });
-                listview.append(list);
-
-                //repositoryMan.GetMessageBySender(this.model.Name, function (messages) {
-                //    self.model.Messages = messages;
-                //    var list = listTemplate.tmpl();
-                //    self.model.Messages.each(function (message) {
-                //        list.append(dividerTemplate.tmpl());
-                //        list.append(itemTemplate.tmpl(message.toJSON()));
-                //    });
-                //    listview.append(list);
-                //});
+                listview.append(list);           
                 return this;
             },
 
@@ -66,5 +56,5 @@ define(['underscore', 'Backbone', 'text!views/app/AppView.htm', 'repositoryMan',
 
         });
 
-        return AppView;
+        return MessageListView;
     });

@@ -3,18 +3,17 @@
     <h1 id="appName"></h1>
 </div>
 <div data-role="content" id="msg-listview">
-  
 </div>
 <script id="tmpl-list" type="text/x-jquery-tmpl">
     <ul data-role="listview" data-inset="true">
     </ul>
 </script>
-<script id="tmpl-list-item" type="text/x-jquery-tmpl">
-    <li data-id="${id}" class="btnMsg"><a href="#"  data-id="${id}" >
-        <p  data-id="${id}" >${message}</p>       
-    </a></li>
-</script>
 <script id="tmpl-list-divider" type="text/x-jquery-tmpl">
     <li data-role="list-divider">${recievedDate}</li>
 </script>
-
+<script id="tmpl-list-item" type="text/x-jquery-tmpl">
+    <li data-id="${id}" class="btnMsg"><a href="#" data-id="${id}">
+        <p data-id="${id}">${message}</p>
+        <p ><strong>${recievedOn.toLocaleTimeString()}</strong></p>
+    </a></li>
+</script>
