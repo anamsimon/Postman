@@ -1,6 +1,6 @@
 define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'models/MessageCollection'],
     function ($, App, AppCollection, Message, MessageCollection) {
-        var _AppNames = ['BrandShare', 'Marcombox', 'Zabbix'];
+        var _AppNames = ['BrandShare', 'Marcombox', 'Zabbix','GO'];
         var _Apps;
 
         var db = window.openDatabase("postmanDB", "1.0", "Postman DB", 1000000);
