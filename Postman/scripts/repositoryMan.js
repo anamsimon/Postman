@@ -1,12 +1,12 @@
 define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'models/MessageCollection'],
     function ($, App, AppCollection, Message, MessageCollection) {
-        var _AppNames = ['BrandShare', 'Marcombox', 'Zabbix','GO'];
-        var _Apps;
+        var _AppNames = ['BrandShare', 'Marcombox', 'Zabbix', 'GO'];
+        //var _Apps;
 
         var db = window.openDatabase("postmanDB", "1.0", "Postman DB", 1000000);
         var _tableName = 'Notification';
-        var _tableCreateSql = 'CREATE TABLE IF NOT EXISTS ' + _tableName + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, sender, message, recievedOn, isRead)';
-        var _tableDropSql = 'DROP TABLE IF EXISTS  ' + _tableName;
+        var _tableCreateSql = 'CREATE TABLE IF NOT EXISTS ' + _tableName + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, sender, message, recievedOn, replyOptions, isRead)';
+        //var _tableDropSql = 'DROP TABLE IF EXISTS  ' + _tableName;
 
 
         var repositoryMan = function () {
@@ -14,83 +14,93 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
                 populateDB();
             }
 
-            this.GetApps = function () {
-                if (_Apps == null)
-                    _Apps = new AppCollection();
+            this.GetApps = function (onSuccess) {
+                var apps = new AppCollection();
 
                 for (var i = 0; i < _AppNames.length; i++) {
-                    var app;
-                    var appJSON;
-                    //var appJSON = storage.Get(_AppNames[i]);
-                    if (appJSON == null) {
-                        app = new App({ Name: _AppNames[i], Messages: new MessageCollection() });
-                        //this.GetMessageBySender(app.get('Name'), function (msgs, sender) {
-                        //    var apps = _Apps.GetByName(sender);
-                        //    if (apps.length > 0) {
-                        //        a = apps[0];
-                        //        a.set('Messages', msgs);
-                        //        a.set('UnreadMessageCount', msgs.GetUnreadCount());
-                        //    }
-                        //});
-                    }
-                    else {
-                        //app = new App(JSON.parse(appJSON));
-                    }
-                    _Apps.add(app);
+                    var app = new App({ Name: _AppNames[i], Messages: new MessageCollection() });
+                    apps.add(app);
+                    //this.GetMessageBySender(app.get('Name'), function (msgs, sender) {
+                    //    var allApps = apps.GetByName(sender);
+                    //    if (allApps.length > 0) {
+                    //        a = allApps[0];
+                    //        a.set('Messages', msgs);
+                    //        a.set('UnreadMessageCount', msgs.GetUnreadCount());
+                    //        if (i == _AppNames.length - 1) {
+                    //            onSuccess(apps);
+                    //        }
+                    //    }
+                    //});
                 }
-                return _Apps;
+
+                this.GetAllMessages(function (msgs) {
+                    msgs.each(function (msg) {
+                         apps.AddMessage(msg);                        
+                    });
+                    onSuccess(apps);
+                });
+
             }
 
             this.InsertMessage = function (message, onSuccess) {
+                //console.log('InsertMessage');
                 var isRead = message.get('isRead') == true ? 1 : 0;
-                var insertSql = 'INSERT INTO ' + _tableName + ' ( sender, message, recievedOn, isRead) VALUES ("'
-                    + message.get('sender') + '","' + message.get('message') + '","' + message.get('recievedOn').toString() + '",' + isRead + ')';
-                insertDB(insertSql,  onSuccess);
+                var insertSql = 'INSERT INTO ' + _tableName + ' ( sender, message, recievedOn, replyOptions, isRead) VALUES ("'
+                    + message.get('sender') + '","' + message.get('message') + '","' + message.get('recievedOn').toString() + '","'
+                    + JSON.stringify(message.get('replyOptions')).replace(/"/g, '\'') + '",' + isRead + ')';
+                insertDB(insertSql, onSuccess);
             }
 
-            this.MarkMessageRead = function (message, onSuccess) {
-                querySql = 'UPDATE ' + _tableName + ' SET isRead=1' + ' WHERE id=' + message.get('id');
-                updateDB(querySql, function() {
-                    var apps = _Apps.GetByName(message.get('sender'));
-                    if (apps.length > 0) {
-                        a = apps[0];
-                        msgs = a.get('Messages');
-                        message.set('isRead',true);
-                        msgs.get(message.id).set('isRead', true);
-                        a.set('UnreadMessageCount', msgs.GetUnreadCount());
-                    }
+            this.MarkMessagesAsRead = function (ids, onSuccess) {
+                querySql = 'UPDATE ' + _tableName + ' SET isRead=1' + ' WHERE id IN (' + ids.join(",") + ")";
+                updateDB(querySql, onSuccess);
+
+            }
+
+            this.GetAllMessages = function (onSuccess) {
+                querySql = 'SELECT * FROM ' + _tableName + ' ORDER BY id DESC';
+                queryDB(querySql, function (rows) {
+                    onSuccess(ConvertRowItemsToMessages(rows));
                 });
 
             }
-
             this.GetMessageBySender = function (sender, onSuccess) {
                 querySql = 'SELECT * FROM ' + _tableName + ' WHERE sender="' + sender + '" ORDER BY id DESC';
-
                 queryDB(querySql, function (rows) {
-                    var messages = new MessageCollection();
-                    for (var i = 0; i < rows.length; i++) {
-                        var item = rows.item(i);
-                        var read = item.isRead == 0 ? false : true;
-                        var msg = new Message({
-                            id: item.id,
-                            sender: item.sender,
-                            message: item.message,
-                            type: '',
-                            reply: '',
-                            recievedOn: new Date(item.recievedOn),
-                            isRead: read
-                        });
-                        messages.add(msg);
-                    }
-                    onSuccess(messages, sender);
+                    onSuccess(ConvertRowItemsToMessages(rows), sender);
                 });
+            }
+
+            function ConvertRowItemsToMessages(rows) {
+                var messages = new MessageCollection();
+                for (var i = 0; i < rows.length; i++) {
+                    var msg = ConvertRowItemToMessage(rows.item(i));
+                    if (msg != null)
+                        messages.add(msg);
+                }
+                return messages;
+            }
+
+            function ConvertRowItemToMessage(item) {
+                var read = item.isRead == 0 ? false : true;
+
+                var msg = new Message({
+                    id: item.id,
+                    sender: item.sender,
+                    message: item.message,
+                    type: '',
+                    replyOptions: JSON.parse(item.replyOptions.replace(/'/g, '"')),
+                    recievedOn: new Date(item.recievedOn),
+                    isRead: read
+                });
+                return msg;
             }
 
             function populateDB() {
                 isTableExists(_tableName, function (exist) {
                     if (!exist) {
                         db.transaction(function (tx) {
-                            tx.executeSql(_tableDropSql);
+                            //tx.executeSql(_tableDropSql);
                             tx.executeSql(_tableCreateSql);
                         }, errorCB, successCB);
                     }
@@ -100,20 +110,26 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
 
             function insertDB(insertSql, onSuccess) {
                 db.transaction(function (tx) {
-                    tx.executeSql(insertSql);
-                }, errorCB, onSuccess);
+                    tx.executeSql(insertSql, [], function (tx, results) {
+                        //console.log('insertDB');
+                        onSuccess(results.insertId);
+                    });
+                }, errorCB);
 
             }
-            function updateDB(query, onSuccess) {
+            function updateDB(query, onSuccess, onError) {
                 db.transaction(function (tx) {
                     tx.executeSql(query);
-                }, errorCB, onSuccess);
+                }, function () {
+                    if (onError) onError();
+                    else errorCB();
+                }, onSuccess);
 
             }
 
 
             function errorCB(err) {
-                alert("Error processing SQL: " + err.code);
+               // alert("Error processing SQL: " + err.code);
             }
 
             function successCB() {
@@ -122,7 +138,7 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
 
             function queryDB(query, onSuccess) {
                 db.transaction(function (tx) {
-                    tx.executeSql(query, [], function (tx, results) {                        
+                    tx.executeSql(query, [], function (tx, results) {
                         onSuccess(results.rows);
                     }, errorCB);
                 }, errorCB);

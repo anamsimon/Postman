@@ -3,19 +3,23 @@ define(['Backbone', 'underscore'],
         var Message = Backbone.Model.extend(
             {
                 defaults: {
-                    id:'',
-                    sender:'',
+                    id: '',
+                    sender: '',
                     message: '',
                     type: '',
                     reply: '',
-                    recievedOn:'',
+                    recievedOn: '',
+                    replyOptions: [],
                     isRead: false
                 },
                 initialize: function () {
+                },
+                MarkAsRead: function () {
+                    this.set('isRead', true);
                 }
             }
         );
 
-       
+
         return Message;
     });

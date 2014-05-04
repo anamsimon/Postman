@@ -36,6 +36,10 @@
     <Content Include="cordova.android.js" />
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
+    <Content Include="css\images\brandshare.png" />
+    <Content Include="css\images\go.png" />
+    <Content Include="css\images\marcombox.png" />
+    <Content Include="css\images\zabbix.png" />
     <Content Include="css\style.css" />
     <Content Include="css\theme\jquery.graphite.ui\images\ajax-loader.gif" />
     <Content Include="css\theme\jquery.graphite.ui\images\icons-18-black.png" />
@@ -340,6 +344,7 @@
     <Folder Include="App_Resources\WP8\Tiles\" />
     <Folder Include="App_Resources\WP8\Tiles\Iconic\" />
     <Folder Include="css\" />
+    <Folder Include="css\images\" />
     <Folder Include="css\theme\" />
     <Folder Include="css\theme\jquery.flat.ui\fonts\" />
     <Folder Include="css\theme\jquery.flat.ui\images\" />

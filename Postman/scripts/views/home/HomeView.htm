@@ -2,15 +2,16 @@
     <h1>Postman</h1>
 </div>
 <div data-role="content">
-    <div id="appGrid">    
+    <div id="appGrid">
     </div>
-    <div id="message"></div>
+</div>
+<div id="message" style="clear:both;display:none"></div>
 </div>
 <script id="tmpl-app-btn" type="text/x-jquery-tmpl">
-    <button class="btnApp" data-name="${Name}">
-        ${Name}
+    <button class="btnApp" data-name="${Name}"
+         style="background: url('css/images/${Name}.png') no-repeat center; width: 80px; height: 80px; float: left; margin-right: 10px;">
         {{if UnreadMessageCount > 0}}
-            <span class="ui-li-count ui-body-inherit">${UnreadMessageCount}</span>
+            <div class="ui-li-count ui-body-inherit">${UnreadMessageCount}</div>
         {{else}}<span></span>{{/if}}</button>
 </script>
 
