@@ -1,7 +1,7 @@
 
-define(['jquery', 'underscore', 'Backbone',  'views/message/MessageListView',
+define(['jquery', 'underscore', 'Backbone', 'views/message/MessageListView',
     'text!views/home/HomeView.htm', 'models/App', 'repositoryMan'],
-    function ($, _, Backbone,  MessageListView, Template, App, repositoryMan) {
+    function ($, _, Backbone, MessageListView, Template, App, repositoryMan) {
         var HomeView = Backbone.View.extend({
 
             events: {
@@ -20,11 +20,9 @@ define(['jquery', 'underscore', 'Backbone',  'views/message/MessageListView',
                 //});
                 $.each(this.model.models, function (i, app) {
                     app.on('change', function () {
-                        repositoryMan.GetMessageBySender(app.get('Name'), function (msgs, sender) {
-                            app.set('Messages', msgs);
-                            app.set('UnreadMessageCount', msgs.GetUnreadCount());
-                            self.updateCount(app);
-                        });
+                        self.updateCount(app);                      
+                        //self.$el.trigger("create");                       
+                        //console.log('create called' + JSON.stringify( app));
                     });
                 });
                 return this;
@@ -42,10 +40,9 @@ define(['jquery', 'underscore', 'Backbone',  'views/message/MessageListView',
             },
             btnApp_clickHandler: function (event) {
                 var name = $(event.target).data('name');
-                repositoryMan.GetMessageBySender(name, function (messages) {
-                    $.mobile.jqmNavigator.pushView(new MessageListView({ model: { Name: name, Messages: messages } }));
-                });
-
+                var app = this.model.GetByName(name);
+                if (app != null)
+                    $.mobile.jqmNavigator.pushView(new MessageListView({ model: app }));
             }
 
         });

@@ -1,11 +1,3 @@
-/**
- * Created by Piotr Walczyszyn (@pwalczyszyn)
- *
- * User: pwalczys
- * Date: 2/16/12
- * Time: 9:20 AM
- */
-
 require.config({
     paths: {
         // RequireJS plugin
@@ -65,6 +57,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
         domReady(function () {
 
             function onDeviceReady(desktop) {
+
                 // Hiding splash screen when app is loaded
                 if (desktop !== true)
                     cordova.exec(null, null, 'SplashScreen', 'hide', []);
@@ -72,10 +65,9 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 // Setting jQM pageContainer to #container div, this solves some jQM flickers & jumps
                 // I covered it here: http://outof.me/fixing-flickers-jumps-of-jquery-mobile-transitions-in-phonegap-apps/
                 $.mobile.pageContainer = $('#container');
-
+                $.mobile.page.prototype.options.theme = "f";
                 // Setting default transition to slide
                 $.mobile.defaultPageTransition = 'slide';
-
                 // Error handle
                 //window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
                 //    alert(url + ":" + lineNumber + ": " + errorMsg);
@@ -91,44 +83,69 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 });
 
                 repositoryMan.Init();
+                var apps = null;
+                repositoryMan.GetApps(function (allApps) {
+                    apps = allApps;
 
-                var apps = repositoryMan.GetApps();
-                var homeView = new HomeView({ model: apps });
-                $.mobile.jqmNavigator.pushView(homeView);
+                    var homeView = new HomeView({ model: apps });
+                    $.mobile.jqmNavigator.pushView(homeView);
 
-                //var notification = {
-                //    "message": "Marcombox says A brand new activity has been created. Activity Id: 118583",
-                //    "payload": { "message": "Marcombox says A brand new activity has been created. Activity Id: 118583" }
-                //};
-                ////alert(notification);
-                //var message = notificationMan.Process(notification);
-                //repositoryMan.InsertMessage(message);
-                //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
-                //if (MessageViewLoaded) {
-                //    var fApps = apps.GetByName(message.get('sender'));
-                //    if (fApps.length > 0) {
-                //        var app = fApps[0];
-                //        app.AddUnreadCount(1);
-                //        //homeView.updateCount(app);                       
-                //    }
-                //}
+                    testCode(apps);
 
-                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
-                    var message = notificationMan.Process(notification);
-                    if (MessageViewLoaded) {
-                        var fApps = apps.GetByName(message.get('sender'));
-                        if (fApps.length > 0) {
-                            var app = fApps[0];
-                            app.AddUnreadCount(1);
-                            //homeView.updateCount(app);
+                });
+
+
+                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {                  
+                    notificationMan.Process(apps, notification, function (message) {
+                        if (MessageViewLoaded == false) {
+                            $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                         }
-                    }
-                    else {
-                        $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
-                    }
+                    });
+
                 }, function () { });
 
 
+            }
+
+            function testCode(apps) {
+                
+                setTimeout(function () {
+                    var notification = {
+                        "message": "A brand new activity has been created. Activity Id: 118583",
+                        "payload": {
+                            "message": "A brand new activity has been created. Activity Id: 118583",
+                            "title": "Zabbix",
+                            "id": 1,
+                            "replyOptions": ["Abc", "Def"]
+                        }
+                    };
+                    //alert(notification);
+                    notificationMan.Process(apps, notification, function (message) {
+                        if (MessageViewLoaded == false) {
+                            // $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                        }
+                    });
+
+                }, 5000);
+
+                setTimeout(function () {
+                    var notification = {
+                        "message": "A brand new activity has been created. Activity Id: ",
+                        "payload": {
+                            "message": "A brand new activity has been created. Activity Id: ",
+                            "title": "Zabbix",
+                            "id": 2,
+                            "replyOptions": ["Abc", "Def"]
+                        }
+                    };
+
+                    notificationMan.Process(apps, notification, function (message) {
+                        if (MessageViewLoaded == false) {
+                            //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                        }
+                    });
+
+                }, 10000);
             }
 
             if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {
@@ -138,6 +155,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 // On desktop don't have to wait for anything
                 onDeviceReady(true);
             }
+
 
         });
 

@@ -10,7 +10,7 @@ define(['underscore', 'Backbone', 'text!views/message/MessageListView.htm', 'rep
 
             render: function () {
                 var self = this;
-                this.$el.html($(Template)).find('#appName').html(this.model.Name);
+                this.$el.html($(Template)).find('#appName').html(this.model.get('Name'));
                 var listview = this.$el.find('#msg-listview');
 
                 var listTemplate = this.$el.find('#tmpl-list');
@@ -19,19 +19,22 @@ define(['underscore', 'Backbone', 'text!views/message/MessageListView.htm', 'rep
 
                 var list = listTemplate.tmpl();
                 var date = null;
-
-                self.model.Messages.each(function (message) {
+                var unreadIds = [];
+                self.model.get('Messages').each(function (message) {
                     if (date != message.get('recievedOn').toDateString()) {
                         date = message.get('recievedOn').toDateString();
                         list.append(dividerTemplate.tmpl({ recievedDate: message.get('recievedOn').toLocaleDateString() }));
                     }
                     list.append(itemTemplate.tmpl(message.toJSON()));
                     if (message.get('isRead') == false) {
-                        repositoryMan.MarkMessageRead(message, function () {
-                            message.set('isRead', true);
-                        })
+                        unreadIds.push(message.id);
+                        message.set('isRead', true);
+                        self.model.AddReadCount(1);
                     }
                 });
+
+                repositoryMan.MarkMessagesAsRead(unreadIds, function () {})
+
                 listview.append(list);           
                 return this;
             },
@@ -41,8 +44,8 @@ define(['underscore', 'Backbone', 'text!views/message/MessageListView.htm', 'rep
             },
 
             btnMsg_clickHandler: function (event) {
-                var id = $(event.target).data('id');
-                $.mobile.jqmNavigator.pushView(new MessageView({ model: this.model.Messages.get(id) }));
+                var id = $(event.currentTarget).data('id');
+                $.mobile.jqmNavigator.pushView(new MessageView({ model: this.model.get('Messages').get(id) }));
             }
 
 

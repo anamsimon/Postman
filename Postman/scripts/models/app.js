@@ -10,17 +10,24 @@ define(['Backbone', 'underscore', "models/MessageCollection"],
                 initialize: function () {
                     Messages = new MessageCollection();
                 },
+                AddMessage: function (message) {
+                    var self = this;
+                    this.get('Messages').add(message);
+                    if (message.get('isRead') == false) {
+                        this.AddUnreadCount(1);
+                        message.on('change:isRead', function () {
+                            if (this.get('isRead') == true)
+                                self.AddReadCount(1);
+                        });
+                    }
+                },
                 AddUnreadCount: function (count) {
                     this.set('UnreadMessageCount', this.get('UnreadMessageCount') + count);
+                },
+                AddReadCount: function (count) {
+                    if (this.get('UnreadMessageCount') > 0)
+                        this.set('UnreadMessageCount', this.get('UnreadMessageCount') - count);
                 }
-                //UnreadMessageCount: function () {
-                //    var count = 0;
-                //    this.Messages.each(function (msg) {
-                //        if (msg.get('isRead') == false)
-                //            count++;
-                //    });
-                //    return count;
-                //}
             }
         );
 
