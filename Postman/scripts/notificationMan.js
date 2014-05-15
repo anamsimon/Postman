@@ -23,22 +23,34 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
                         
 
         }
+
+
+        /*Go configuration*/
+        var baseUrl = "http://go.sashiimi.com:8153/";
+        var pipelineName = "SashimiApp";
+        var credentialBase64 = "YW5hbXNpbW9uOmdvMTI1Mg==";
+        var targetUrl = baseUrl + "go/api/pipelines/" + pipelineName + "/schedule";
+        /*Go configuration*/
        
-        //this.Process = function (apps,notification) {
-        //    //notification = JSON.parse(notification);            
-        //    var index = notification.message.indexOf(niddle);
-        //    var sender = '';
-        //    var message = '';
-        //    if (index != -1) {
-        //        sender = notification.message.substring(0, index - 1);
-        //        message = notification.message.substring(index + 1 + niddle.length);
-        //        var processedMsg = new Message({ sender: sender, message: message, isRead: false, recievedOn: new Date() });
-        //        repositoryMan.InsertMessage(processedMsg);
-        //        apps.AddMessage(processedMsg);
-        //        return processedMsg;
-        //    }
-        //    return null;
-        //}
+        this.Reply = function (name,onSuccess, onError) {
+            if (name.toLowerCase() == "go") {
+                $.ajax({
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic YW5hbXNpbW9uOmdvMTI1Mg==");
+                    },
+                    crossDomain: true,
+                    type: "POST",
+                    url: targetUrl,
+                    contentType: "application/json",
+                    success: function (data) {
+                        onSuccess(data);
+                    },
+                    error: function (error) {
+                        onError(error);                      
+                    }
+                });
+            }
+        }
     }
 
     //message

@@ -163,3 +163,6 @@
 [0504/032113:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
 [0504/034308:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
 [0504/042637:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
+[0515/121622:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
+[0515/122943:WARNING:resource_bundle.cc(303)] locale_file_path.empty()
+[0515/123819:WARNING:resource_bundle.cc(303)] locale_file_path.empty()

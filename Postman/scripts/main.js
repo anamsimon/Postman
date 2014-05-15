@@ -46,7 +46,7 @@ var baasScheme = 'http';
 var androidProjectNumber = '665903716372';
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
-var emulatorMode = true;
+var emulatorMode = false;
 
 var MessageViewLoaded = false;
 
@@ -90,12 +90,13 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                     var homeView = new HomeView({ model: apps });
                     $.mobile.jqmNavigator.pushView(homeView);
 
-                    testCode(apps);
+                    if (emulatorMode)
+                        testCode(apps);
 
                 });
 
 
-                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {                  
+                everliveX.enablePushNotifications(el, androidProjectNumber, emulatorMode, function (notification) {
                     notificationMan.Process(apps, notification, function (message) {
                         if (MessageViewLoaded == false) {
                             $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
@@ -104,39 +105,24 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
 
                 }, function () { });
 
-                //$.ajax({
-                //    beforeSend: function (xhr) {
-                //        xhr.setRequestHeader("Authorization", "Basic YW5hbXNpbW9uOmdvMTI1Mg==");
-                //    },
-                //    crossDomain: true,                  
-                //    type: "POST",
-                //    url: "http://go.sashiimi.com:8153/go/api/pipelines/UiTesting/schedule",
-                //    contentType: "application/json",
-                //    success: function (data) {
-                //        alert(JSON.stringify(data));
-                //    },
-                //    error: function (error) {
-                //        //$("#container").append(data.Name, "Failed to Send");
-                //    }
-                //});
             }
 
             function testCode(apps) {
-                
+
                 setTimeout(function () {
                     var notification = {
-                        "message": "A brand new activity has been created. Activity Id: 118583",
+                        "message": "Pipeline failed",
                         "payload": {
-                            "message": "A brand new activity has been created. Activity Id: 118583",
-                            "title": "Zabbix",
+                            "message": "Pipeline failed",
+                            "title": "GO",
                             "id": 1,
-                            "replyOptions": ["Abc", "Def"]
+                            "replyOptions": []
                         }
                     };
                     //alert(notification);
                     notificationMan.Process(apps, notification, function (message) {
                         if (MessageViewLoaded == false) {
-                            // $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                            $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                         }
                     });
 
@@ -144,18 +130,18 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
 
                 setTimeout(function () {
                     var notification = {
-                        "message": "A brand new activity has been created. Activity Id: ",
+                        "message": "Pipeline failed 1",
                         "payload": {
-                            "message": "A brand new activity has been created. Activity Id: ",
-                            "title": "Zabbix",
-                            "id": 2,
-                            "replyOptions": ["Abc", "Def"]
+                            "message": "Pipeline failed 1",
+                            "title": "GO",
+                            "id": 1,
+                            "replyOptions": []
                         }
                     };
 
                     notificationMan.Process(apps, notification, function (message) {
                         if (MessageViewLoaded == false) {
-                            //$.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                            $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
                         }
                     });
 

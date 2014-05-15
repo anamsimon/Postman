@@ -1,12 +1,13 @@
-define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'repositoryMan'],
-    function (_, Backbone, Template, repositoryMan) {
+define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'repositoryMan', 'notificationMan'],
+    function (_, Backbone, Template, repositoryMan, notificationMan) {
+
 
         var MessageView = Backbone.View.extend({
 
             events: {
                 'click #btnBack': 'btnBack_clickHandler',
                 'click .btnReply': 'btnReply_clickHandler'
-                
+
             },
 
             render: function () {
@@ -16,6 +17,9 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
                 if (self.model.get('replyOptions').length > 0) {
                     msgTmpl.find('#replyOptions').append(self.$el.find('#tmpl-msg-reply').tmpl(self.model.toJSON()));
                 }
+                else if (self.model.get('sender').toLowerCase() == 'go') {
+                    msgTmpl.find('#replyOptions').append(self.$el.find('#tmpl-msg-reply').tmpl({ replyOptions: ['Rerun'] }));
+                }
                 self.$el.find('#messageContent').append(msgTmpl);
                 MessageViewLoaded = true;
                 if (self.model.get('isRead') == false) {
@@ -23,7 +27,6 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
                         self.model.MarkAsRead();
                     })
                 }
-
                 return this;
             },
             btnBack_clickHandler: function (event) {
@@ -32,7 +35,14 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
             },
             btnReply_clickHandler: function (event) {
                 var reply = $(event.currentTarget).data('reply');
-                alert(reply);
+
+                if (reply == 'Rerun') {
+                    notificationMan.Reply(this.model.get('sender'), function (data) {
+                        alert(data);
+                    }, function (error) {
+                        alert(JSON.stringify(error.responseText));
+                    });
+                }
             }
         });
 
