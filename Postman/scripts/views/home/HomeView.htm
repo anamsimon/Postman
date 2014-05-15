@@ -1,17 +1,20 @@
 <div data-role="header" data-position="fixed">
-    <h1>Postman</h1>
+    <img src="css/images/icon.png" style="float:left" /><h1>Postman</h1>
 </div>
 <div data-role="content">
     <div id="appGrid">
     </div>
 </div>
 <div id="message" style="clear:both;display:none"></div>
-</div>
 <script id="tmpl-app-btn" type="text/x-jquery-tmpl">
     <button class="btnApp" data-name="${Name}"
-         style="background: url('css/images/${Name}.png') no-repeat center; width: 80px; height: 80px; float: left; margin-right: 10px;">
+         style="background-color: white ">
+        <img src="css/images/${Name}.png" style="float:left" />
+        <h2>${Name}</h2>
+        <div style="float:right">
         {{if UnreadMessageCount > 0}}
-            <div class="ui-li-count ui-body-inherit">${UnreadMessageCount}</div>
-        {{else}}<span></span>{{/if}}</button>
+            <span class="ui-li-count ui-body-inherit">${UnreadMessageCount}</span>
+        {{else}}<span></span>{{/if}}
+            </button>
 </script>
 

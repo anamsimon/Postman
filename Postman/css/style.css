@@ -1,22 +1,26 @@
-body {
+body
+{
     margin: 0;
 }
 
-#container {
+#container
+{
     position: absolute;
     width: 100%;
     top: 0;
     bottom: 0;
 }
 
-div[data-role="header"] {
+div[data-role="header"]
+{
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
 }
 
-div[data-role="content"] {
+div[data-role="content"]
+{
     position: absolute;
     top: 41px;
     bottom: 0;
@@ -24,12 +28,29 @@ div[data-role="content"] {
     right: 0;
 }
 
-.scrollable {
+.scrollable
+{
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
 
-.ui-listview>li p
+.ui-listview > li p
 {
     white-space: normal;
 }
+
+.ui-icon-postman-brandshare
+{
+    background-image: url("images/brandshare.png");
+   background-size: 18px 18px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2)
+{
+    .ui-icon-postman-brandshare
+    {
+        background-image: url("images/brandshare.png");
+        background-size: 18px 18px;
+    }
+}
+

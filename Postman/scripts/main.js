@@ -46,7 +46,7 @@ var baasScheme = 'http';
 var androidProjectNumber = '665903716372';
 //Set this to true in order to test push notifications in the emulator. Note, that you will not be able to actually receive 
 //push notifications because we will generate fake push tokens. But you will be able to test your other push-related functionality without getting errors.
-var emulatorMode = false;
+var emulatorMode = true;
 
 var MessageViewLoaded = false;
 
@@ -90,7 +90,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                     var homeView = new HomeView({ model: apps });
                     $.mobile.jqmNavigator.pushView(homeView);
 
-                    //testCode(apps);
+                    testCode(apps);
 
                 });
 
@@ -104,7 +104,21 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
 
                 }, function () { });
 
-
+                //$.ajax({
+                //    beforeSend: function (xhr) {
+                //        xhr.setRequestHeader("Authorization", "Basic YW5hbXNpbW9uOmdvMTI1Mg==");
+                //    },
+                //    crossDomain: true,                  
+                //    type: "POST",
+                //    url: "http://go.sashiimi.com:8153/go/api/pipelines/UiTesting/schedule",
+                //    contentType: "application/json",
+                //    success: function (data) {
+                //        alert(JSON.stringify(data));
+                //    },
+                //    error: function (error) {
+                //        //$("#container").append(data.Name, "Failed to Send");
+                //    }
+                //});
             }
 
             function testCode(apps) {

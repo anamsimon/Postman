@@ -41,6 +41,7 @@
     <Content Include="cordova.wp8.js" />
     <Content Include="css\images\brandshare.png" />
     <Content Include="css\images\go.png" />
+    <Content Include="css\images\icon.png" />
     <Content Include="css\images\marcombox.png" />
     <Content Include="css\images\zabbix.png" />
     <Content Include="css\style.css" />

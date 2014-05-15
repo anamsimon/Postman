@@ -32,12 +32,14 @@ define(['jquery', 'models/App', 'models/AppCollection', 'models/Message', 'model
                     //    }
                     //});
                 }
+                onSuccess(apps);
+
 
                 this.GetAllMessages(function (msgs) {
                     msgs.each(function (msg) {
                          apps.AddMessage(msg);                        
                     });
-                    onSuccess(apps);
+                   
                 });
 
             }

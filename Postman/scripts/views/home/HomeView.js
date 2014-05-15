@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'Backbone', 'views/message/MessageListView',
                 }
             },
             btnApp_clickHandler: function (event) {
-                var name = $(event.target).data('name');
+                var name = $(event.currentTarget).data('name');
                 var app = this.model.GetByName(name);
                 if (app != null)
                     $.mobile.jqmNavigator.pushView(new MessageListView({ model: app }));
