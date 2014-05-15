@@ -9,8 +9,9 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
             var reply = notification.payload.replyOptions;
 
             var processedMsg = new Message(
-                { sender: sender, message: message, isRead: false, recievedOn: new Date(),
-                replyOptions: reply
+                {
+                    sender: sender, message: message, isRead: false, recievedOn: new Date(),
+                    replyOptions: reply
                 });
 
             //console.log("Process");
@@ -20,7 +21,7 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
                 apps.AddMessage(processedMsg);
                 onSuccess(processedMsg);
             });
-                        
+
 
         }
 
@@ -38,8 +39,8 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
 
         var targetUrl = baseUrl + "go/api/pipelines/" + pipelineName + "/schedule";
         /*Go configuration*/
-       
-        this.Reply = function (name,onSuccess, onError) {
+
+        this.Reply = function (name, onSuccess, onError) {
             if (name.toLowerCase() == "go") {
                 $.ajax({
                     beforeSend: function (xhr) {
@@ -53,7 +54,7 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
                         onSuccess(data);
                     },
                     error: function (error) {
-                        onError(error);                      
+                        onError(error);
                     }
                 });
             }

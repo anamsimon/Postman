@@ -110,15 +110,15 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
 
                 setTimeout(function () {
                     var notification = {
-                        "message": "Pipeline failed",
+                        "message": "BrandShare says A brand new activity has been created. Activity Id: 118585",
                         "payload": {
-                            "message": "Pipeline failed",
-                            "title": "GO",
+                            "message": "BrandShare says A brand new activity has been created. Activity Id: 118585",
+                            "title": "BrandShare",
                             "id": 1,
                             "replyOptions": []
                         }
                     };
-                    //alert(notification);
+                   
                     notificationMan.Process(apps, notification, function (message) {
                         if (MessageViewLoaded == false) {
                             $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
@@ -126,12 +126,50 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                     });
 
                 }, 5000);
+                
+                setTimeout(function () {
+                    var notification = {
+                        "message": "Anam has created a task for Anam to be completed by 5/15/2014. Here is task details :'Hello Shuvro'",
+                        "payload": {
+                            "message": "Anam has created a task for Anam to be completed by 5/15/2014. Here is task details :'Hello Shuvro'",
+                            "title": "Marcombox",
+                            "id": 1,
+                            "replyOptions": []
+                        }
+                    };
+
+                    notificationMan.Process(apps, notification, function (message) {
+                        if (MessageViewLoaded == false) {
+                            $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                        }
+                    });
+
+                }, 60000);
 
                 setTimeout(function () {
                     var notification = {
-                        "message": "Pipeline failed 1",
+                        "message": "Free disk space on C:(percentage)(dha11sakiblptvfs.fs.size[C:,pfree]):19.03%",
                         "payload": {
-                            "message": "Pipeline failed 1",
+                            "message": "Free disk space on C:(percentage)(dha11sakiblptvfs.fs.size[C:,pfree]):19.03%",
+                            "title": "Zabbix",
+                            "id": 1,
+                            "replyOptions": []
+                        }
+                    };
+
+                    notificationMan.Process(apps, notification, function (message) {
+                        if (MessageViewLoaded == false) {
+                            $.mobile.jqmNavigator.pushView(new MessageView({ model: message }));
+                        }
+                    });
+
+                }, 90000);
+
+                setTimeout(function () {
+                    var notification = {
+                        "message": "Pipeline-BrandShareDeploy Stage-DellDeploy Task-Deploy Failed",
+                        "payload": {
+                            "message": "Pipeline-BrandShareDeploy Stage-DellDeploy Task-Deploy Failed",
                             "title": "GO",
                             "id": 1,
                             "replyOptions": []
@@ -144,7 +182,8 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                         }
                     });
 
-                }, 10000);
+                }, 120000);
+
             }
 
             if (navigator.userAgent.match(/(iPad|iPhone|Android)/)) {

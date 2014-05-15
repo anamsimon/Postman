@@ -7,7 +7,6 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
             events: {
                 'click #btnBack': 'btnBack_clickHandler',
                 'click .btnReply': 'btnReply_clickHandler'
-
             },
 
             render: function () {
@@ -36,7 +35,7 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
             btnReply_clickHandler: function (event) {
                 var reply = $(event.currentTarget).data('reply');
 
-                if (reply == 'Rerun') {
+                if (reply == 'Rerun the pipeline') {
                     notificationMan.Reply(this.model.get('sender'), function (data) {
                         alert(data);
                     }, function (error) {
