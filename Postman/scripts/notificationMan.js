@@ -28,13 +28,13 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
 
         /*Go configuration*/
 
-        var baseUrl = "http://go.brandshare.net:8153/";
-        var pipelineName = "BrandShareDeploy";
-        var credentialBase64 = "ZXJmYW5hLnNpa2RlcjpAbXJhc3AybzFv";
+        //var baseUrl = "http://go.brandshare.net:8153/";
+        //var pipelineName = "BrandShareDeploy";
+        //var credentialBase64 = "ZXJmYW5hLnNpa2RlcjpAbXJhc3AybzFv";
 
-        //var baseUrl = "http://go.sashiimi.com:8153/";
-        //var pipelineName = "SashimiApp";
-        //var credentialBase64 = "YW5hbXNpbW9uOmdvMTI1Mg==";
+        var baseUrl = "http://go.sashiimi.com:8153/";
+        var pipelineName = "Uitesting";
+        var credentialBase64 = "YW5hbXNpbW9uOmdvMTI1Mg==";
 
 
         var targetUrl = baseUrl + "go/api/pipelines/" + pipelineName + "/schedule";

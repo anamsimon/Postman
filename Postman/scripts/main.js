@@ -144,7 +144,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                         }
                     });
 
-                }, 60000);
+                }, 40000);
 
                 setTimeout(function () {
                     var notification = {

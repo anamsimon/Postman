@@ -37,9 +37,9 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
 
                 if (reply == 'Rerun the pipeline') {
                     notificationMan.Reply(this.model.get('sender'), function (data) {
-                        alert(data);
+                        alert("Successful: " + data);
                     }, function (error) {
-                        alert(JSON.stringify(error.responseText));
+                        alert("Error: " + JSON.stringify(error));
                     });
                 }
             }
