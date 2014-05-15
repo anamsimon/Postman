@@ -26,9 +26,16 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
 
 
         /*Go configuration*/
-        var baseUrl = "http://go.sashiimi.com:8153/";
-        var pipelineName = "SashimiApp";
-        var credentialBase64 = "YW5hbXNpbW9uOmdvMTI1Mg==";
+
+        var baseUrl = "http://go.brandshare.net:8153/";
+        var pipelineName = "BrandShareDeploy";
+        var credentialBase64 = "ZXJmYW5hLnNpa2RlcjpAbXJhc3AybzFv";
+
+        //var baseUrl = "http://go.sashiimi.com:8153/";
+        //var pipelineName = "SashimiApp";
+        //var credentialBase64 = "YW5hbXNpbW9uOmdvMTI1Mg==";
+
+
         var targetUrl = baseUrl + "go/api/pipelines/" + pipelineName + "/schedule";
         /*Go configuration*/
        
@@ -36,7 +43,7 @@ define(['jquery', 'repositoryMan', 'models/Message'], function ($, repositoryMan
             if (name.toLowerCase() == "go") {
                 $.ajax({
                     beforeSend: function (xhr) {
-                        xhr.setRequestHeader("Authorization", "Basic YW5hbXNpbW9uOmdvMTI1Mg==");
+                        xhr.setRequestHeader("Authorization", "Basic " + credentialBase64);
                     },
                     crossDomain: true,
                     type: "POST",

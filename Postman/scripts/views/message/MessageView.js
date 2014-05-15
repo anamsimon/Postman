@@ -18,7 +18,7 @@ define(['underscore', 'Backbone', 'text!views/message/MessageView.htm', 'reposit
                     msgTmpl.find('#replyOptions').append(self.$el.find('#tmpl-msg-reply').tmpl(self.model.toJSON()));
                 }
                 else if (self.model.get('sender').toLowerCase() == 'go') {
-                    msgTmpl.find('#replyOptions').append(self.$el.find('#tmpl-msg-reply').tmpl({ replyOptions: ['Rerun'] }));
+                    msgTmpl.find('#replyOptions').append(self.$el.find('#tmpl-msg-reply').tmpl({ replyOptions: ['Rerun the pipeline'] }));
                 }
                 self.$el.find('#messageContent').append(msgTmpl);
                 MessageViewLoaded = true;

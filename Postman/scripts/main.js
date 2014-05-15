@@ -62,8 +62,7 @@ require(['domReady', 'views/home/HomeView', 'views/message/MessageView', 'libs/e
                 if (desktop !== true)
                     cordova.exec(null, null, 'SplashScreen', 'hide', []);
 
-                // Setting jQM pageContainer to #container div, this solves some jQM flickers & jumps
-                // I covered it here: http://outof.me/fixing-flickers-jumps-of-jquery-mobile-transitions-in-phonegap-apps/
+                // Setting jQM pageContainer to #container div, this solves some jQM flickers & jumps                
                 $.mobile.pageContainer = $('#container');
                 $.mobile.page.prototype.options.theme = "f";
                 // Setting default transition to slide
