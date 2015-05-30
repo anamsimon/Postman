@@ -1,4 +1,10 @@
+Postman allows you to receive push notifications on event trigger by any kind of application (ERP, Business, Monitoring tool).  
 This application is a basic example of using Push Notifications provided by Telerik BackEnd Services.
+
+### Technology
+1. Backbonejs
+2. Requirejs
+3. Cordova
 
 ### Requirements
 - Registration in Telerik BackEnd Services (http://www.telerik.com/backend-services) and Telerik AppBuilder (http://www.telerik.com/appbuilder)
@@ -13,8 +19,4 @@ This application is a basic example of using Push Notifications provided by Tele
 5. Enable Push Notifications in Telerik BackEnd Services. Go to your project settings and in the Push Notifications section activate the push providers.
 5. Deploy the project to mobile device and run it.
 
-### Technology
-1. Backbonejs
-2. Requirejs
-3. Cordova
 
