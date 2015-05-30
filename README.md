@@ -12,3 +12,9 @@ This application is a basic example of using Push Notifications provided by Tele
 4. Locate the string BAAS_API_KEY and replace it with the API Key of your 'Friends' project in Telerik BackEnd Services portal. It can be found in the API Keys section.
 5. Enable Push Notifications in Telerik BackEnd Services. Go to your project settings and in the Push Notifications section activate the push providers.
 5. Deploy the project to mobile device and run it.
+
+### Technology
+1. Backbonejs
+2. Requirejs
+3. Cordova
+
